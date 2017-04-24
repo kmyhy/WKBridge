@@ -26,7 +26,7 @@
 
 ### 前端 H5 页面
 
-已上图的 h5.html 为例，当需要调用到某个原生接口时，需要在 native_modules() 方法中注册相应的模块，比如：
+当需要调用到某个原生接口时，需要在 native_modules() 方法中注册相应的模块，比如：
 
 ```javascript
 		<script type='text/javascript'>
