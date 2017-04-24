@@ -13,6 +13,17 @@
 		1215A64D1EA8453E0021F75B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1215A64B1EA8453E0021F75B /* Main.storyboard */; };
 		1215A64F1EA8453E0021F75B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1215A64E1EA8453E0021F75B /* Assets.xcassets */; };
 		1215A6521EA8453E0021F75B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1215A6501EA8453E0021F75B /* LaunchScreen.storyboard */; };
+		1215A6671EA8469B0021F75B /* h5.html in Resources */ = {isa = PBXBuildFile; fileRef = 1215A6661EA8469B0021F75B /* h5.html */; };
+		1215A6711EA8488B0021F75B /* WKBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66A1EA8488B0021F75B /* WKBridge.m */; };
+		1215A6721EA8488B0021F75B /* WKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66C1EA8488B0021F75B /* WKController.m */; };
+		1215A6731EA8488B0021F75B /* WKJsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66E1EA8488B0021F75B /* WKJsBridge.m */; };
+		1215A6741EA8488B0021F75B /* WKWebView+JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6701EA8488B0021F75B /* WKWebView+JS.m */; };
+		1215A6791EA848C30021F75B /* UIViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6781EA848C30021F75B /* UIViewControllerExtension.m */; };
+		1215A67C1EA849070021F75B /* NSString+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A67B1EA849070021F75B /* NSString+Add.m */; };
+		1215A6801EA8497F0021F75B /* NSObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A67F1EA8497F0021F75B /* NSObjectExtension.m */; };
+		1215A68E1EA855250021F75B /* WKAlertBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A68B1EA855250021F75B /* WKAlertBridge.m */; };
+		1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A68D1EA855250021F75B /* WKNavigationBridge.m */; };
+		1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6911EA8554D0021F75B /* WKLogBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +37,28 @@
 		1215A64E1EA8453E0021F75B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1215A6511EA8453E0021F75B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1215A6531EA8453E0021F75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1215A6661EA8469B0021F75B /* h5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = h5.html; sourceTree = "<group>"; };
+		1215A6691EA8488B0021F75B /* WKBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBridge.h; sourceTree = "<group>"; };
+		1215A66A1EA8488B0021F75B /* WKBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBridge.m; sourceTree = "<group>"; };
+		1215A66B1EA8488B0021F75B /* WKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKController.h; sourceTree = "<group>"; };
+		1215A66C1EA8488B0021F75B /* WKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKController.m; sourceTree = "<group>"; };
+		1215A66D1EA8488B0021F75B /* WKJsBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKJsBridge.h; sourceTree = "<group>"; };
+		1215A66E1EA8488B0021F75B /* WKJsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKJsBridge.m; sourceTree = "<group>"; };
+		1215A66F1EA8488B0021F75B /* WKWebView+JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+JS.h"; sourceTree = "<group>"; };
+		1215A6701EA8488B0021F75B /* WKWebView+JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+JS.m"; sourceTree = "<group>"; };
+		1215A6771EA848C30021F75B /* UIViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerExtension.h; sourceTree = "<group>"; };
+		1215A6781EA848C30021F75B /* UIViewControllerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerExtension.m; sourceTree = "<group>"; };
+		1215A67A1EA849070021F75B /* NSString+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Add.h"; sourceTree = "<group>"; };
+		1215A67B1EA849070021F75B /* NSString+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Add.m"; sourceTree = "<group>"; };
+		1215A67D1EA849420021F75B /* dimensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dimensions.h; sourceTree = "<group>"; };
+		1215A67E1EA8497F0021F75B /* NSObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectExtension.h; sourceTree = "<group>"; };
+		1215A67F1EA8497F0021F75B /* NSObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectExtension.m; sourceTree = "<group>"; };
+		1215A68A1EA855250021F75B /* WKAlertBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKAlertBridge.h; sourceTree = "<group>"; };
+		1215A68B1EA855250021F75B /* WKAlertBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKAlertBridge.m; sourceTree = "<group>"; };
+		1215A68C1EA855250021F75B /* WKNavigationBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKNavigationBridge.h; sourceTree = "<group>"; };
+		1215A68D1EA855250021F75B /* WKNavigationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKNavigationBridge.m; sourceTree = "<group>"; };
+		1215A6901EA8554D0021F75B /* WKLogBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKLogBridge.h; sourceTree = "<group>"; };
+		1215A6911EA8554D0021F75B /* WKLogBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLogBridge.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +91,13 @@
 		1215A6411EA8453E0021F75B /* WKBridge */ = {
 			isa = PBXGroup;
 			children = (
+				1215A6681EA8488B0021F75B /* WKJsBridge */,
 				1215A6451EA8453E0021F75B /* AppDelegate.h */,
 				1215A6461EA8453E0021F75B /* AppDelegate.m */,
 				1215A6481EA8453E0021F75B /* ViewController.h */,
 				1215A6491EA8453E0021F75B /* ViewController.m */,
+				1215A6761EA848AC0021F75B /* Extension */,
+				1215A6661EA8469B0021F75B /* h5.html */,
 				1215A64B1EA8453E0021F75B /* Main.storyboard */,
 				1215A64E1EA8453E0021F75B /* Assets.xcassets */,
 				1215A6501EA8453E0021F75B /* LaunchScreen.storyboard */,
@@ -77,6 +113,49 @@
 				1215A6431EA8453E0021F75B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1215A6681EA8488B0021F75B /* WKJsBridge */ = {
+			isa = PBXGroup;
+			children = (
+				1215A6891EA855250021F75B /* module */,
+				1215A6691EA8488B0021F75B /* WKBridge.h */,
+				1215A66A1EA8488B0021F75B /* WKBridge.m */,
+				1215A66B1EA8488B0021F75B /* WKController.h */,
+				1215A66C1EA8488B0021F75B /* WKController.m */,
+				1215A66D1EA8488B0021F75B /* WKJsBridge.h */,
+				1215A66E1EA8488B0021F75B /* WKJsBridge.m */,
+				1215A66F1EA8488B0021F75B /* WKWebView+JS.h */,
+				1215A6701EA8488B0021F75B /* WKWebView+JS.m */,
+			);
+			path = WKJsBridge;
+			sourceTree = "<group>";
+		};
+		1215A6761EA848AC0021F75B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1215A67E1EA8497F0021F75B /* NSObjectExtension.h */,
+				1215A67F1EA8497F0021F75B /* NSObjectExtension.m */,
+				1215A67D1EA849420021F75B /* dimensions.h */,
+				1215A67A1EA849070021F75B /* NSString+Add.h */,
+				1215A67B1EA849070021F75B /* NSString+Add.m */,
+				1215A6771EA848C30021F75B /* UIViewControllerExtension.h */,
+				1215A6781EA848C30021F75B /* UIViewControllerExtension.m */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		1215A6891EA855250021F75B /* module */ = {
+			isa = PBXGroup;
+			children = (
+				1215A6901EA8554D0021F75B /* WKLogBridge.h */,
+				1215A6911EA8554D0021F75B /* WKLogBridge.m */,
+				1215A68A1EA855250021F75B /* WKAlertBridge.h */,
+				1215A68B1EA855250021F75B /* WKAlertBridge.m */,
+				1215A68C1EA855250021F75B /* WKNavigationBridge.h */,
+				1215A68D1EA855250021F75B /* WKNavigationBridge.m */,
+			);
+			path = module;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +219,7 @@
 				1215A6521EA8453E0021F75B /* LaunchScreen.storyboard in Resources */,
 				1215A64F1EA8453E0021F75B /* Assets.xcassets in Resources */,
 				1215A64D1EA8453E0021F75B /* Main.storyboard in Resources */,
+				1215A6671EA8469B0021F75B /* h5.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,9 +230,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1215A6791EA848C30021F75B /* UIViewControllerExtension.m in Sources */,
+				1215A6741EA8488B0021F75B /* WKWebView+JS.m in Sources */,
+				1215A6711EA8488B0021F75B /* WKBridge.m in Sources */,
 				1215A64A1EA8453E0021F75B /* ViewController.m in Sources */,
 				1215A6471EA8453E0021F75B /* AppDelegate.m in Sources */,
+				1215A6801EA8497F0021F75B /* NSObjectExtension.m in Sources */,
 				1215A6441EA8453E0021F75B /* main.m in Sources */,
+				1215A67C1EA849070021F75B /* NSString+Add.m in Sources */,
+				1215A68E1EA855250021F75B /* WKAlertBridge.m in Sources */,
+				1215A6721EA8488B0021F75B /* WKController.m in Sources */,
+				1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */,
+				1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */,
+				1215A6731EA8488B0021F75B /* WKJsBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +397,7 @@
 				1215A6581EA8453E0021F75B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

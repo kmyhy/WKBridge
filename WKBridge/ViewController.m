@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WKController.h"
 
 @interface ViewController ()
 
@@ -25,5 +26,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)loadHTML:(id)sender {
+    WKController* vc = [[WKController alloc]init];
+    
+    vc.url = [[NSBundle mainBundle]URLForResource:@"h5.html" withExtension:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end
