@@ -44,7 +44,7 @@ external.Log.log('xxxxxxx');
 external.Alert.alert({'msg':'ggg','title':'5555'})
 
 ```
-
+> 注：如果需要在页面加载后就调用某些原生方法，请将调用语句写在 iOSReady() 方法中。
 ### 原生模块
 
 每个原生模块都是一个单独的 WKBridge 子类，每个子类提供相关方法的集合，每个方法提供不同的原生功能调用。
