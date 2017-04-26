@@ -15,7 +15,6 @@
 		1215A6521EA8453E0021F75B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1215A6501EA8453E0021F75B /* LaunchScreen.storyboard */; };
 		1215A6671EA8469B0021F75B /* h5.html in Resources */ = {isa = PBXBuildFile; fileRef = 1215A6661EA8469B0021F75B /* h5.html */; };
 		1215A6711EA8488B0021F75B /* WKBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66A1EA8488B0021F75B /* WKBridge.m */; };
-		1215A6721EA8488B0021F75B /* WKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66C1EA8488B0021F75B /* WKController.m */; };
 		1215A6731EA8488B0021F75B /* WKJsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A66E1EA8488B0021F75B /* WKJsBridge.m */; };
 		1215A6741EA8488B0021F75B /* WKWebView+JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6701EA8488B0021F75B /* WKWebView+JS.m */; };
 		1215A6791EA848C30021F75B /* UIViewControllerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6781EA848C30021F75B /* UIViewControllerExtension.m */; };
@@ -25,6 +24,7 @@
 		1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A68D1EA855250021F75B /* WKNavigationBridge.m */; };
 		1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6911EA8554D0021F75B /* WKLogBridge.m */; };
 		125EE58C1EB04CD90019D17F /* ConcatenateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 125EE58B1EB04CD90019D17F /* ConcatenateController.m */; };
+		125EE5A01EB0855D0019D17F /* WKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 125EE59F1EB0855D0019D17F /* WKController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,6 @@
 		1215A6691EA8488B0021F75B /* WKBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKBridge.h; sourceTree = "<group>"; };
 		1215A66A1EA8488B0021F75B /* WKBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKBridge.m; sourceTree = "<group>"; };
 		1215A66B1EA8488B0021F75B /* WKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKController.h; sourceTree = "<group>"; };
-		1215A66C1EA8488B0021F75B /* WKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKController.m; sourceTree = "<group>"; };
 		1215A66D1EA8488B0021F75B /* WKJsBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKJsBridge.h; sourceTree = "<group>"; };
 		1215A66E1EA8488B0021F75B /* WKJsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKJsBridge.m; sourceTree = "<group>"; };
 		1215A66F1EA8488B0021F75B /* WKWebView+JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+JS.h"; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		1215A6911EA8554D0021F75B /* WKLogBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLogBridge.m; sourceTree = "<group>"; };
 		125EE58A1EB04CD90019D17F /* ConcatenateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcatenateController.h; sourceTree = "<group>"; };
 		125EE58B1EB04CD90019D17F /* ConcatenateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcatenateController.m; sourceTree = "<group>"; };
+		125EE59F1EB0855D0019D17F /* WKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 				1215A6891EA855250021F75B /* module */,
 				1215A6691EA8488B0021F75B /* WKBridge.h */,
 				1215A66A1EA8488B0021F75B /* WKBridge.m */,
+				125EE59F1EB0855D0019D17F /* WKController.m */,
 				1215A66B1EA8488B0021F75B /* WKController.h */,
-				1215A66C1EA8488B0021F75B /* WKController.m */,
 				1215A66D1EA8488B0021F75B /* WKJsBridge.h */,
 				1215A66E1EA8488B0021F75B /* WKJsBridge.m */,
 				1215A66F1EA8488B0021F75B /* WKWebView+JS.h */,
@@ -244,7 +244,7 @@
 				1215A6441EA8453E0021F75B /* main.m in Sources */,
 				1215A67C1EA849070021F75B /* NSString+Add.m in Sources */,
 				1215A68E1EA855250021F75B /* WKAlertBridge.m in Sources */,
-				1215A6721EA8488B0021F75B /* WKController.m in Sources */,
+				125EE5A01EB0855D0019D17F /* WKController.m in Sources */,
 				1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */,
 				1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */,
 				1215A6731EA8488B0021F75B /* WKJsBridge.m in Sources */,

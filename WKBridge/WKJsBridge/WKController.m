@@ -187,6 +187,7 @@
 //    [self.webView callJsWithFunName:@"alert" param:@"abcd"];//Just for test
     
     // 如果 native_modules() js 函数未定义，则报一个“A JavaScript exception occurred”错误。
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     __weak __typeof(self) weakSelf = self;
     [webView evaluateJavaScript:@"native_modules()" completionHandler:^(id result, NSError *error) {
         if (error == nil) {
@@ -224,6 +225,7 @@
 }
 // 页面加载失败
 -(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     NSLog(@"页面加载失败：%@",error.debugDescription);
 }
 
