@@ -8,8 +8,10 @@
 
 #import "WKBridge.h"
 #import "UIViewControllerExtension.h"
+#import "ConcatenateController.h"
 
 @implementation WKBridge
+
 // 以下 4 个方法分别演示了 JS 的 4 种传参方式：无参数、字典参数、字符串参数、数组参数
 -(void)navBack{ // 1. 无参数，示例：external.navBack();
     if(_wkController!=nil && _wkController.navigationController!=nil){
@@ -43,4 +45,27 @@
     
 }
 /////////////////////////////////////////////////////
+/// 以下方法实现了原生回调 JS，参数中的 callBack 表示一个 JS 函数，原生通过这个函数返回计算结果
+-(void)concatenate:(NSArray* )data{
+    if([data[0] isKindOfClass:[NSDictionary class]]){// data 数组中仅第一个 json 对象有效
+        NSDictionary* dic = data[0];
+        NSString* callback= dic[@"callback"];
+        NSString* string1 = dic[@"string1"];
+        NSString* string2 = dic[@"string2"];
+    
+        ConcatenateController* vc= (ConcatenateController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ConcatenateController"];
+        
+        vc.callback = callback;// 保存回调函数
+        vc.string1 = string1;
+        vc.string2 = string2;
+        vc.bridge = self;
+        
+        [_wkController presentViewController:vc animated:YES completion:nil];
+        
+    }
+}
+-(void)callbackJS:(NSString*)jsFunction result:(NSString*)result{
+    NSString* js = [NSString stringWithFormat:@"%@(%@)",jsFunction,result];
+    [_wkController.webView evaluateJavaScript:js completionHandler:nil];
+}
 @end

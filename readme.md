@@ -47,7 +47,7 @@ external.Alert.alert({'msg':'ggg','title':'5555'})
 > 注：如果需要在页面加载后就调用某些原生方法，请将调用语句写在 iOSReady() 方法中。
 ### 原生模块
 
-每个原生模块都是一个单独的 WKBridge 子类，每个子类提供相关方法的集合，每个方法提供不同的原生功能调用。
+每个原生模块都是一个单独的 WKBridge 子类，每个子类提供相关方法的集合，每个方法提供不同的原生功能调用，每个“模块名-WKBridge子类映射”都需要添加到 WKController 的 _moduleMaps 字典属性中（请参考 WKController 的 viewDidLoad 方法中 _moduleMaps 属性的初始化代码）。
 
 每个方法最多可以接收 0-1 个参数，这些参数形式必须是以下 4 种之一：
 
@@ -56,8 +56,10 @@ external.Alert.alert({'msg':'ggg','title':'5555'})
 3. 1 个字符串参数 
 4. 1 个数组参数
 
-具体可参考 WKBridge 中的方法示例。
+具体可参考 WKBridge 中的方法实现。
 
+### 原生回调 JS
 
+参考 WKBridge 中 concatenate 方法以及 ConcatenateController 的实现。
 
 

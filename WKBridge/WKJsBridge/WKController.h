@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
+#import "WKWebView+JS.h"
 
 @interface WKController : UIViewController
 @property(nonatomic,strong)NSURL* url;
+@property(nonatomic,strong)WKWebView* webView;
 @end

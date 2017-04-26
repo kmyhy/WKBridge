@@ -9,19 +9,13 @@
 #import "WKController.h"
 #import "WKBridge.h"
 #import "WKJsBridge.h"
-#import <WebKit/WebKit.h>
 #import "dimensions.h"
 //#import <API/API.h>
 #import "NSString+Add.h"
 #import "NSObjectExtension.h"
-#import "WKWebView+JS.h"
-#import "WKNavigationBridge.h"
-#import "WKLogBridge.h"
-#import "WKAlertBridge.h"
 
 @interface WKController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
-@property(nonatomic,strong)WKWebView* webView;
 @property(nonatomic,strong)UIProgressView* progressView;
 
 @property(nonatomic,copy,readonly)NSDictionary* moduleMaps;
@@ -39,9 +33,6 @@
 
     _moduleMaps = @{
                     @"Base":@"WKBridge",
-                    @"Nav":@"WKNavigationBridge",
-                    @"Alert":@"WKAlertBridge",
-                    @"Log":@"WKLogBridge"
                     };
     
     [self initWebView];// 添加 webview
@@ -90,7 +81,7 @@
     if(self.injectJsSuccess==NO){
         
         __weak __typeof(self) weakSelf = self;
-        NSArray* filter = @[@"init",@"wkController",@"setWkController:"];// MARK: 过滤掉 BaseBrdige 中的默认构造方法和属性的 getter/setter 方法
+        NSArray* filter = @[@"init",@"wkController",@"setWkController:",@"callbackJS:result:"];// MARK: 过滤掉 BaseBrdige 中的默认构造方法和属性的 getter/setter 方法
         addMessageToWebView(map, filter, self.webView, self, ^(id result, NSError *error) {
             if(error==nil){
                 weakSelf.injectJsSuccess = YES;
