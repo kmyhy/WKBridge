@@ -14,12 +14,12 @@
 
 @required
 @property(copy,nonatomic)NSString *callback;
-@property(strong,nonatomic)WKBridge* bridge;
+@property(weak,nonatomic)WKBridge* bridge;
 
 @end
 
 @interface WKBridge : NSObject
-@property(strong,nonatomic)WKController* wkController;
+@property(weak,nonatomic)WKController* wkController;
 
 // 以下 4 个方法分别演示了 JS 的 4 种传参方式：无参数、字典参数、字符串参数、数组参数
 -(void)navBack;                     // 1. 无参数

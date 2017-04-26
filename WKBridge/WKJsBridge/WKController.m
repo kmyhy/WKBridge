@@ -19,7 +19,7 @@
 @property(nonatomic,strong)UIProgressView* progressView;
 
 @property(nonatomic,copy,readonly)NSDictionary* moduleMaps;
-@property(nonatomic,strong)NSMutableDictionary* modules;
+//@property(nonatomic,strong)NSMutableDictionary* modules;// 导致循环引用：self.modules->wkbridge->wkController(self)
 
 // js 注入是否成功
 @property(nonatomic,assign)BOOL injectJsSuccess;
@@ -47,7 +47,6 @@
         [self.webView loadRequest:req];
     }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -93,17 +92,17 @@
     }
 }
 -(BOOL)registerModules:(NSArray<NSString*>*)moduels{
-    self.modules = [NSMutableDictionary new];
-    for(NSString* modname in moduels){
-        NSString* className = self.moduleMaps[modname];
-        if(className!=nil){
-            id bridge = [[NSClassFromString(className) alloc] init];
-            if([bridge isKindOfClass:[WKBridge class]]){
-                ((WKBridge*)bridge).wkController = self;
-                _modules[modname] = bridge;
-            }
-        }
-    }
+//    self.modules = [NSMutableDictionary new];
+//    for(NSString* modname in moduels){
+//        NSString* className = self.moduleMaps[modname];
+//        if(className!=nil){
+//            id bridge = [[NSClassFromString(className) alloc] init];
+//            if([bridge isKindOfClass:[WKBridge class]]){
+//                ((WKBridge*)bridge).wkController = self;
+//                _modules[modname] = bridge;
+//            }
+//        }
+//    }
     return YES;
 }
 -(void)setCookieToURL:(NSURL*)url cookieName:(NSString*)cookieName cookieValue:(NSString*)cookieValue{
@@ -138,26 +137,42 @@
     [self presentViewController:ac animated:YES completion:nil];
     
 }
+/// 通过模块名获得 WKBridge 实例对象
+-(WKBridge*)bridgeFromModuleName:(NSString*)moduleName{
+    NSString* className = _moduleMaps[moduleName];
+    
+    Class clazz=NSClassFromString(className);
+    
+    if(clazz){
+        return (WKBridge*)[[clazz alloc]init];
+    }
+    return nil;
+}
 // MARK: extension - WKScriptMessageHandler
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     NSLog(@"******收到 JS 消息：%@，内容：%@",message.name,message.body);
     
     NSString* methodName = message.name;
     
-    id bridge = nil;
+    WKBridge* bridge = nil;
     if([methodName containsString:@"$"]){// 如果消息名中包含了 $，则需要取出模块名称
         NSArray<NSString*>* components = [methodName componentsSeparatedByString:@"$"];
         if(components.count>1){
             NSString* moduleName = components[0];
             methodName = components[1];
-            bridge = _modules[moduleName];
+            
+            bridge = [self bridgeFromModuleName:moduleName];
+            
+            
         }
         
     }else{
-        bridge = _modules[@"Base"];
+        bridge = [self bridgeFromModuleName:@"Base"];
     }
     
     if(bridge != nil){
+        
+        bridge.wkController= self;
         if(message.body == nil){// 方法无参数
             NSLog(@"message's body is nil");
             SEL sel= NSSelectorFromString(methodName);
@@ -210,9 +225,9 @@
                 }
                 if(map != nil && map.count > 0){
                     // 注册本地(原生)模块
-                    if([self registerModules:map.allKeys]){
+                    if([weakSelf registerModules:map.allKeys]){
                         // 注入 JS 模块
-                        [self injectJsModules:map];
+                        [weakSelf injectJsModules:map];
                     }else{
                         NSLog(@"注册本地模块失败！");
                     }
@@ -242,8 +257,9 @@
         self.progressView.progress = self.webView.estimatedProgress;
         
         if(self.webView.estimatedProgress == 1.0) {
+            __weak __typeof(self) weakSelf=self;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.progressView.hidden = YES;
+                weakSelf.progressView.hidden = YES;
             });
         }else if(self.progressView.hidden == YES){
             self.progressView.hidden = NO;

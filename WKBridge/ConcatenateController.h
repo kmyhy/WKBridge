@@ -14,6 +14,6 @@
 @property(copy,nonatomic)NSString* string1;
 @property(copy,nonatomic)NSString* string2;
 @property(copy,nonatomic)NSString* callback;
-@property(strong,nonatomic)WKBridge* bridge;
+@property(weak,nonatomic)WKBridge* bridge;
 
 @end
