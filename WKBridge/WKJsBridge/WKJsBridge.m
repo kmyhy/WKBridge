@@ -8,6 +8,7 @@
 
 #import "WKJsBridge.h"
 #import "WKBridge.h"
+#import "WeakScriptMessageDelegate.h"
 
 void enumerateMethodNames(Class class,NSArray* filters,EnumerateMethodBlock block){
     unsigned int methodCount = 0;
@@ -34,15 +35,21 @@ void addMessageToWebView(NSDictionary<NSString*,NSString*>* moduleMap,NSArray* f
     // 如果 external 对象存在，则清空它
     [injectJs appendString:@"if(typeof window.external != 'object'){window['external'] = {};};\n"];
     
+    // 将 handler 转换成一个若引用的 handler,从而避免内存泄漏
+    WeakScriptMessageDelegate* weakHandler = [[WeakScriptMessageDelegate alloc] initWithDelegate:handler];
+    
+//    __weak __typeof(webView) weakWebView = webView;
+    
     for(NSString* moduleName in moduleMap){
         
         if([moduleName isEqualToString:@"Base"]){
             // 单独注入 external 的成员方法（即 WKBridge 的成员方法）
+            
             enumerateMethodNames([WKBridge class], filters,^(NSString *methodName) {
                 NSLog(@" method name:%@",methodName);
                 methodName = [methodName stringByReplacingOccurrencesOfString:@":" withString:@""];
                 
-                [webView.configuration.userContentController addScriptMessageHandler:handler name:methodName];
+                [webView.configuration.userContentController addScriptMessageHandler:weakHandler name:methodName];
                 
                 [injectJs appendFormat:@"window.external['%@']= function %@(data) { window.webkit.messageHandlers.%@.postMessage(data);};\n",methodName,methodName,methodName];
             });
@@ -56,7 +63,7 @@ void addMessageToWebView(NSDictionary<NSString*,NSString*>* moduleMap,NSArray* f
                 NSLog(@" method name:%@",methodName);
                 methodName = [methodName stringByReplacingOccurrencesOfString:@":" withString:@""];
                 NSString* msgName = [NSString stringWithFormat:@"%@$%@",moduleName,methodName];
-                [webView.configuration.userContentController addScriptMessageHandler:handler name:msgName];
+                [webView.configuration.userContentController addScriptMessageHandler:weakHandler name:msgName];
                 
                 [injectJs appendFormat:@"window.external['%@']={};\n",moduleName];
                 

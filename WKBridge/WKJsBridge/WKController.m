@@ -47,6 +47,13 @@
         [self.webView loadRequest:req];
     }
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -64,7 +71,7 @@
     self.webView.navigationDelegate = self;
     
     self.webView.UIDelegate = self;
-    
+
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     
 }
@@ -91,7 +98,7 @@
         });
     }
 }
--(BOOL)registerModules:(NSArray<NSString*>*)moduels{
+//-(BOOL)registerModules:(NSArray<NSString*>*)moduels{
 //    self.modules = [NSMutableDictionary new];
 //    for(NSString* modname in moduels){
 //        NSString* className = self.moduleMaps[modname];
@@ -103,8 +110,8 @@
 //            }
 //        }
 //    }
-    return YES;
-}
+//    return YES;
+//}
 -(void)setCookieToURL:(NSURL*)url cookieName:(NSString*)cookieName cookieValue:(NSString*)cookieValue{
     NSMutableDictionary* dic=[[NSDictionary dictionaryWithObjectsAndKeys:
                        cookieName, NSHTTPCookieName,
@@ -198,23 +205,20 @@
 // MARK: extension - WKNavigationDelegate
 // 页面加载完成
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-  
-//    [self.webView callJsWithFunName:@"alert" param:@"abcd"];//Just for test
     
     // 如果 native_modules() js 函数未定义，则报一个“A JavaScript exception occurred”错误。
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     __weak __typeof(self) weakSelf = self;
     [webView evaluateJavaScript:@"native_modules()" completionHandler:^(id result, NSError *error) {
         if (error == nil) {
             if (result != nil) {
                 NSString* resultString = [NSString stringWithFormat:@"%@", result];
-                
+
 //                NSLog(@"js 返回 %@",resultString);
                 NSArray<NSString*> *result = [resultString componentsSeparatedByString:@","];
-                
+
                 // 模块-类名映射
                 NSMutableDictionary<NSString*,NSString*> *map = [NSMutableDictionary<NSString*,NSString*> new];
-                
+
                 map[@"Base"]=@"WKBridge";// 默认注入 Base 模块
                 for(NSString* module in result){
                     NSString* class = weakSelf.moduleMaps[module];
@@ -224,13 +228,7 @@
                     }
                 }
                 if(map != nil && map.count > 0){
-                    // 注册本地(原生)模块
-                    if([weakSelf registerModules:map.allKeys]){
-                        // 注入 JS 模块
-                        [weakSelf injectJsModules:map];
-                    }else{
-                        NSLog(@"注册本地模块失败！");
-                    }
+                    [weakSelf injectJsModules:map];// 注入 JS 模块
                 }
             }
         } else {
