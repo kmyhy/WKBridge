@@ -12,7 +12,7 @@
             </style>
         <script type='text/javascript'>
             function native_modules(){
-                return 'Nav,Log,Alert';
+                return 'Nav:WKNavigationBridge,Log:WKLogBridge,Alert: WKAlertBridge';
             }
         
         function showResult(msg){
@@ -22,5 +22,9 @@
     </head>
     <body>
         <h1>H5 测试页面<h1>
+            
+            <p align = 'center'>
+            
+            <a href="javascript:external.concatenate({'string1':'222','string2':'33','callback':'external.alert'});">打开</a>
     </body>
 </html>

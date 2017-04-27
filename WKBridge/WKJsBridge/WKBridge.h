@@ -14,7 +14,7 @@
 
 @required
 @property(copy,nonatomic)NSString *callback;
-@property(weak,nonatomic)WKBridge* bridge;
+@property(strong,nonatomic)WKBridge* bridge;
 
 @end
 

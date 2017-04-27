@@ -18,7 +18,7 @@
 
 @property(nonatomic,strong)UIProgressView* progressView;
 
-@property(nonatomic,copy,readonly)NSDictionary* moduleMaps;
+@property(nonatomic,copy)NSDictionary* moduleMaps;
 //@property(nonatomic,strong)NSMutableDictionary* modules;// 导致循环引用：self.modules->wkbridge->wkController(self)
 
 // js 注入是否成功
@@ -30,10 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    _moduleMaps = @{
-                    @"Base":@"WKBridge",
-                    };
     
     [self initWebView];// 添加 webview
     [self initProgressView];// 添加进度条
@@ -221,13 +217,23 @@
 
                 map[@"Base"]=@"WKBridge";// 默认注入 Base 模块
                 for(NSString* module in result){
-                    NSString* class = weakSelf.moduleMaps[module];
                     
-                    if(class){
-                        map[module]=class;
+                    NSArray* components = [module componentsSeparatedByString:@":"];
+                    
+                    if(components.count>1){
+                        NSString* moduleName = components[0];
+                        NSString* className = components[1];
+                        
+                        moduleName= [moduleName stringByTrimmingCharactersInSet:
+                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        className = [className stringByTrimmingCharactersInSet:
+                                     [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        
+                        map[moduleName]=className;
                     }
                 }
                 if(map != nil && map.count > 0){
+                    weakSelf.moduleMaps = map;
                     [weakSelf injectJsModules:map];// 注入 JS 模块
                 }
             }
