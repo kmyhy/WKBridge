@@ -23,6 +23,7 @@
 		1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A68D1EA855250021F75B /* WKNavigationBridge.m */; };
 		1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1215A6911EA8554D0021F75B /* WKLogBridge.m */; };
 		125EE58C1EB04CD90019D17F /* ConcatenateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 125EE58B1EB04CD90019D17F /* ConcatenateController.m */; };
+		1289F4411EB2EA6400270755 /* func.m in Sources */ = {isa = PBXBuildFile; fileRef = 1289F4401EB2EA6400270755 /* func.m */; };
 		12EEFB301EB1896500D68600 /* WeakScriptMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EEFB2F1EB1896500D68600 /* WeakScriptMessageDelegate.m */; };
 		12EEFB321EB189A800D68600 /* WKJsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EEFB311EB189A800D68600 /* WKJsBridge.m */; };
 		12EEFB341EB189C600D68600 /* WKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EEFB331EB189C600D68600 /* WKController.m */; };
@@ -61,6 +62,8 @@
 		1215A6911EA8554D0021F75B /* WKLogBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKLogBridge.m; sourceTree = "<group>"; };
 		125EE58A1EB04CD90019D17F /* ConcatenateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcatenateController.h; sourceTree = "<group>"; };
 		125EE58B1EB04CD90019D17F /* ConcatenateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcatenateController.m; sourceTree = "<group>"; };
+		1289F43F1EB2EA6400270755 /* func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = func.h; sourceTree = "<group>"; };
+		1289F4401EB2EA6400270755 /* func.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = func.m; sourceTree = "<group>"; };
 		12EEFB2E1EB1896500D68600 /* WeakScriptMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakScriptMessageDelegate.h; sourceTree = "<group>"; };
 		12EEFB2F1EB1896500D68600 /* WeakScriptMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakScriptMessageDelegate.m; sourceTree = "<group>"; };
 		12EEFB311EB189A800D68600 /* WKJsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKJsBridge.m; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				12EEFB311EB189A800D68600 /* WKJsBridge.m */,
 				1215A66F1EA8488B0021F75B /* WKWebView+JS.h */,
 				1215A6701EA8488B0021F75B /* WKWebView+JS.m */,
+				1289F43F1EB2EA6400270755 /* func.h */,
+				1289F4401EB2EA6400270755 /* func.m */,
 			);
 			path = WKJsBridge;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				1215A68E1EA855250021F75B /* WKAlertBridge.m in Sources */,
 				1215A6921EA8554D0021F75B /* WKLogBridge.m in Sources */,
 				1215A68F1EA855250021F75B /* WKNavigationBridge.m in Sources */,
+				1289F4411EB2EA6400270755 /* func.m in Sources */,
 				125EE58C1EB04CD90019D17F /* ConcatenateController.m in Sources */,
 				12EEFB321EB189A800D68600 /* WKJsBridge.m in Sources */,
 			);

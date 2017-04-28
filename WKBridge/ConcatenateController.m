@@ -21,9 +21,9 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if(weakSelf.callback!=nil && weakSelf.tfResult.text!=nil){
             // 回调函数要求一个 JSON 字符串
-            NSString* result = [NSString stringWithFormat:@"{'msg':'%@'}",weakSelf.tfResult.text];
+            NSDictionary* result =@{@"msg":weakSelf.tfResult.text};
             
-            [weakSelf.bridge callbackJS:weakSelf.callback result:result];
+            [weakSelf.bridge callbackJS:weakSelf.callback param:result];
         }
     }];
 }

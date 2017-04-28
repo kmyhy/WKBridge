@@ -9,6 +9,7 @@
 #import "WKBridge.h"
 #import "UIViewControllerExtension.h"
 #import "ConcatenateController.h"
+#import "func.h"
 
 @implementation WKBridge
 
@@ -64,8 +65,8 @@
         
     }
 }
--(void)callbackJS:(NSString*)jsFunction result:(NSString*)result{
-    NSString* js = [NSString stringWithFormat:@"%@(%@)",jsFunction,result];
+-(void)callbackJS:(NSString*)jsFunction param:(id)param{
+    NSString* js = makeJsCallString(jsFunction, param);
     [_wkController.webView evaluateJavaScript:js completionHandler:nil];
 }
 @end

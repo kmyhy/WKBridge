@@ -83,11 +83,11 @@
     if(self.injectJsSuccess==NO){
         
         __weak __typeof(self) weakSelf = self;
-        NSArray* filter = @[@"init",@"wkController",@"setWkController:",@"callbackJS:result:"];// MARK: 过滤掉 BaseBrdige 中的默认构造方法和属性的 getter/setter 方法
+        NSArray* filter = @[@"init",@"wkController",@"setWkController:",@"callbackJS:param:"];// MARK: 过滤掉 BaseBrdige 中的默认构造方法和属性的 getter/setter 方法
         addMessageToWebView(map, filter, self.webView, self, ^(id result, NSError *error) {
             if(error==nil){
                 weakSelf.injectJsSuccess = YES;
-                [weakSelf.webView evaluateJavaScript:@"iOSReady()" completionHandler:nil];
+                [weakSelf.webView evaluateJavaScript:@"nativeReady()" completionHandler:nil];
             }else{
                 weakSelf.injectJsSuccess = NO;
             }

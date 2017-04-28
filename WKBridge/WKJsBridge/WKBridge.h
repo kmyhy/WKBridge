@@ -46,7 +46,7 @@
 
 //////////////////////////////////////////////////////
 
--(void)callbackJS:(NSString*)jsFunction result:(NSString*)result;
+-(void)callbackJS:(NSString*)jsFunction param:(id)param;
 
 
 @end
