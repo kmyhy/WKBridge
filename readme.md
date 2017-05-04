@@ -65,7 +65,7 @@ external.Alert.alert({'msg':'ggg','title':'5555'})
 
 ```swift
 @property(copy,nonatomic)NSString* callback;
-@property(weak,nonatomic)WKBridge* bridge;
+@property(strong,nonatomic)WKBridge* bridge;
 ```
 
 并在初始化 ViewController 之后对着这两个属性进行初始化。具体请参考 WKBridge 中 concatenate 方法以及 ConcatenateController 的实现。
