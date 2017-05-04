@@ -36,10 +36,11 @@
     
     // 加载 URL
     if(self.url != nil){
-
+        
         NSURLRequest* req=[[NSURLRequest alloc]initWithURL:self.url];
-
-//        [self setCookieToURL:self.url cookieName:@"token" cookieValue:[[AccountAdditionalModel currentAccount] getUserToken]];
+        
+        
+        //        [self setCookieToURL:self.url cookieName:@"token" cookieValue:[[AccountAdditionalModel currentAccount] getUserToken]];
         [self.webView loadRequest:req];
     }
 }
@@ -61,13 +62,13 @@
     WKWebViewConfiguration* conf=[WKWebViewConfiguration new];
     
     self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:conf];
-
+    
     [self.view addSubview:self.webView];
     
     self.webView.navigationDelegate = self;
     
     self.webView.UIDelegate = self;
-
+    
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     
 }
@@ -108,13 +109,44 @@
 //    }
 //    return YES;
 //}
+/// 以 JS 方式设置 cookie
+-(void)setCookie:(NSString*)key value:(NSString*)value{
+    NSString* js = [NSString stringWithFormat:@"setCookie('%@','%@');",key,value];
+    
+    NSArray* array = @[@"function setCookie(name,value)",
+                       @"{",
+                       @"var Days = 30;",
+                       @"var exp = new Date();",
+                       @"exp.setTime(exp.getTime() + Days*24*60*60*1000);",
+                       @"document.cookie = name + \"=\"+ escape (value) + \";expires=\" + exp.toGMTString();",
+                       @"}",
+                       @"function getCookie(name)",
+                       @"{",
+                       @"var arr,reg=new RegExp(\"(^| )\"+name+\"=([^;]*)(;|$)\");",
+                       @"if(arr=document.cookie.match(reg))",
+                       @"return unescape(arr[2]);",
+                       @"else",
+                       @"return null;",
+                       @"}",
+                       js,
+                       ];
+    js = [array componentsJoinedByString:@"\n"];
+    
+    [_webView evaluateJavaScript:js completionHandler:^(id result, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"evaluateJavaScript failed:%@",error.localizedDescription);
+        }
+    }];
+}
+
+/// 原生设置 cookie 方法
 -(void)setCookieToURL:(NSURL*)url cookieName:(NSString*)cookieName cookieValue:(NSString*)cookieValue{
     NSMutableDictionary* dic=[[NSDictionary dictionaryWithObjectsAndKeys:
-                       cookieName, NSHTTPCookieName,
-                       cookieValue, NSHTTPCookieValue,
-                       @"/", NSHTTPCookiePath,
-                       @"1.0", NSHTTPCookieVersion,
-                       nil] mutableCopy];
+                               cookieName, NSHTTPCookieName,
+                               cookieValue, NSHTTPCookieValue,
+                               @"/", NSHTTPCookiePath,
+                               @"1.0", NSHTTPCookieVersion,
+                               nil] mutableCopy];
     
     if (url.host) {
         dic[NSHTTPCookieDomain]=url.host;
@@ -136,7 +168,7 @@
     [ac addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
     }]];
-
+    
     [self presentViewController:ac animated:YES completion:nil];
     
 }
@@ -188,11 +220,11 @@
             }
         }else{ // 方法有 1 个参数
             SEL sel= NSSelectorFromString([methodName add:@":"]);
-             if([bridge respondsToSelector:sel]){
-                 [self callSelector:[methodName add:@":"] target:bridge withObject:@[message.body]];
-             }else{
-                 NSLog(@"%@方法未找到！",[methodName add:@":"]);
-             }
+            if([bridge respondsToSelector:sel]){
+                [self callSelector:[methodName add:@":"] target:bridge withObject:@[message.body]];
+            }else{
+                NSLog(@"%@方法未找到！",[methodName add:@":"]);
+            }
         }
     }else{
         NSLog(@"WKBridge 未初始化");
@@ -202,19 +234,24 @@
 // 页面加载完成
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     
+    // 这种方式设置 cookie 对 JS 无效
+    //     [self setCookieToURL:self.url cookieName:@"token" cookieValue:[[AccountAdditionalModel currentAccount] getUserToken]];
+    
+//    [self setCookie:@"token" value:[[AccountAdditionalModel currentAccount] getUserToken]];
+    
     // 如果 native_modules() js 函数未定义，则报一个“A JavaScript exception occurred”错误。
     __weak __typeof(self) weakSelf = self;
     [webView evaluateJavaScript:@"native_modules()" completionHandler:^(id result, NSError *error) {
         if (error == nil) {
             if (result != nil) {
                 NSString* resultString = [NSString stringWithFormat:@"%@", result];
-
-//                NSLog(@"js 返回 %@",resultString);
+                
+                //                NSLog(@"js 返回 %@",resultString);
                 NSArray<NSString*> *result = [resultString componentsSeparatedByString:@","];
-
+                
                 // 模块-类名映射
                 NSMutableDictionary<NSString*,NSString*> *map = [NSMutableDictionary<NSString*,NSString*> new];
-
+                
                 map[@"Base"]=@"WKBridge";// 默认注入 Base 模块
                 for(NSString* module in result){
                     
